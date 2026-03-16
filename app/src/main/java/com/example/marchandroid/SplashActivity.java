@@ -1,6 +1,7 @@
 package com.example.marchandroid;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.os.Handler;
 
@@ -21,9 +22,18 @@ public class SplashActivity extends AppCompatActivity {
         new Handler().postDelayed(new Runnable() {
             @Override
             public void run() {
-                Intent intent=new Intent(SplashActivity.this,LoginActivity.class);
-                startActivity(intent);
-                finish();
+                SharedPreferences sharedPreferences=getSharedPreferences("MyPref",MODE_PRIVATE);
+                String islogin=sharedPreferences.getString("islogin","false");
+                if (islogin.equals("true"))
+                {
+                    Intent intent=new Intent(SplashActivity.this,TimePickerActivity.class);
+                    startActivity(intent);
+                    finish();
+                }else {
+                    Intent intent=new Intent(SplashActivity.this,LoginActivity.class);
+                    startActivity(intent);
+                    finish();
+                }
             }
         },3000);
         ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main), (v, insets) -> {
