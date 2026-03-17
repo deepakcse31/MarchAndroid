@@ -26,7 +26,7 @@ public class SplashActivity extends AppCompatActivity {
                 String islogin=sharedPreferences.getString("islogin","false");
                 if (islogin.equals("true"))
                 {
-                    Intent intent=new Intent(SplashActivity.this,TimePickerActivity.class);
+                    Intent intent=new Intent(SplashActivity.this, ListViewActivity.class);
                     startActivity(intent);
                     finish();
                 }else {
